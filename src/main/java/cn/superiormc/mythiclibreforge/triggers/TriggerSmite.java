@@ -5,21 +5,22 @@ import com.willfp.libreforge.ProvidedHolder;
 import com.willfp.libreforge.triggers.Trigger;
 import com.willfp.libreforge.triggers.TriggerData;
 import com.willfp.libreforge.triggers.TriggerParameter;
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.player.PlayerAdvancementDoneEvent;
+import org.bukkit.event.inventory.SmithItemEvent;
+import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
 import java.util.Set;
 
-public class TriggerAdvencementDone extends Trigger {
+public class TriggerSmite extends Trigger {
 
-    public TriggerAdvencementDone() {
-        super("advancement_done");
+    public TriggerSmite() {
+        super("smite");
     }
 
     @NotNull
@@ -28,17 +29,20 @@ public class TriggerAdvencementDone extends Trigger {
         Set<TriggerParameter> data = new HashSet<>();
         data.add(TriggerParameter.PLAYER);
         data.add(TriggerParameter.LOCATION);
-        data.add(TriggerParameter.EVENT);
+        data.add(TriggerParameter.ITEM);
         return data;
     }
 
     @EventHandler
-    public void handle(PlayerAdvancementDoneEvent event) {
-        if (event.getAdvancement().getKey().getKey().startsWith("recipes/")) {
+    public void handle(SmithItemEvent event) {
+        if (event.getInventory().getResult() == null) {
             return;
         }
-        Player player = event.getPlayer();
-        Location location = event.getPlayer().getLocation();
+        if (!(event.getWhoClicked() instanceof Player)) {
+            return;
+        }
+        Player player = (Player) event.getWhoClicked();
+        ItemStack item = event.getInventory().getResult();
         ProvidedHolder holder = new ProvidedHolder() {
             @NotNull
             @Override
@@ -69,10 +73,10 @@ public class TriggerAdvencementDone extends Trigger {
                 null,
                 null,
                 event,
-                location,
                 null,
                 null,
                 null,
+                item,
                 null,
                 1,
                 player);

@@ -1,56 +1,71 @@
-package cn.superiormc.mythiclibreforge.libreforge;
+package cn.superiormc.mythiclibreforge.effects;
 
 import com.willfp.libreforge.ConfigArgumentsBuilder;
-import com.willfp.libreforge.ConfigArgumentsKt;
 import com.willfp.libreforge.NoCompileData;
 import com.willfp.libreforge.effects.Effect;
 import com.willfp.libreforge.ConfigArguments;
-import com.willfp.libreforge.effects.impl.EffectGiveXp;
 import com.willfp.libreforge.triggers.TriggerData;
 import com.willfp.eco.core.config.interfaces.Config;
 import com.willfp.libreforge.triggers.TriggerParameter;
-import kotlin.collections.SetsKt;
-import kotlin.jvm.functions.Function1;
+import io.lumine.mythic.bukkit.MythicBukkit;
+import io.lumine.mythic.core.utils.MythicUtil;
+import org.bukkit.Bukkit;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.Collections;
-import java.util.Set;
+import java.util.*;
 
-public class EffectCastMythicSkills extends Effect {
+public class EffectCastMythicSkill extends Effect<NoCompileData> {
 
-    private static final Set<TriggerParameter> parameters = Collections.singleton(TriggerParameter.PLAYER);
-
-    private static final ConfigArguments arguments = ConfigArgumentsKt.arguments((Function1)null.INSTANCE);
-
-    public EffectCastMythicSkills() {
-        super("cast_mythic_skills");
+    public EffectCastMythicSkill() {
+        super("cast_mythic_skill");
     }
 
     @Override
-    public Set<TriggerParameter> getParameters() {
-        return parameters;
+    public boolean isPermanent() {
+        return false;
     }
 
     @Override
-    public void requireArguments() {
-        arguments.require("amount", "You must specify the amount of xp to give!");
-    }
-
-    @Override
-    public boolean onTrigger(Config config, TriggerData data, NoCompileData compileData) {
+    protected boolean onTrigger(@NotNull Config config, @NotNull TriggerData data, NoCompileData compileData) {
+        if (!Bukkit.getPluginManager().isPluginEnabled("MythicMobs") ||
+        Bukkit.getPluginManager().isPluginEnabled("MythicTotem")) {
+            return false;
+        }
         if (data.getPlayer() == null) {
             return false;
         }
-
-        if (Prerequisite.HAS_PAPER.isMet()) {
-            data.getPlayer().giveExp(config.getIntFromExpression("amount", data),
-                    config.getBoolOrNull("apply_mending") != null ? config.getBoolOrNull("apply_mending") : true);
-        } else {
-            data.getPlayer().giveExp(config.getIntFromExpression("amount", data));
+        Player player = data.getPlayer();
+        LivingEntity victim = MythicUtil.getTargetedEntity(player);
+        if (data.getVictim() != null) {
+            victim = data.getVictim();
         }
-
+        if (config.getBoolOrNull("victim_to_player") != null && config.getBoolOrNull("victim_to_player")) {
+            victim = player;
+        }
+        String skill = config.getString("skill");
+        List<Entity> targets = new ArrayList();
+        targets.add(victim);
+        MythicBukkit.inst().getAPIHelper().castSkill(player, skill, player, player.getLocation(), targets, (Collection)null, 1.0F);
         return true;
     }
-}
+
+    @NotNull
+    @Override
+    protected Set<TriggerParameter> getParameters() {
+        Set<TriggerParameter> data = new HashSet<>();
+        data.add(TriggerParameter.PLAYER);
+        return data;
+    }
+
+    @NotNull
+    @Override
+    public ConfigArguments getArguments() {
+        ConfigArgumentsBuilder builder = new ConfigArgumentsBuilder();
+        builder.require("skill", "You must specify the skill to cast!");
+        return builder.build$core();
+    }
 
 }
