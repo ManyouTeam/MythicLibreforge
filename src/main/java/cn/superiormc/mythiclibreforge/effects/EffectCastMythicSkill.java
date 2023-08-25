@@ -45,7 +45,7 @@ public class EffectCastMythicSkill extends Effect<NoCompileData> {
             victim = player;
         }
         String skill = config.getString("skill");
-        List<Entity> targets = new ArrayList();
+        List<Entity> targets = new ArrayList<>();
         targets.add(victim);
         MythicBukkit.inst().getAPIHelper().castSkill(player, skill, player, player.getLocation(), targets, null, 1.0F);
         return true;

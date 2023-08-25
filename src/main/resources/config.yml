@@ -1,9 +1,14 @@
 effects:
-  cast-mythic-skill: true
-  add-mmo-stat: true
-  auto-plant: true
+  cast_mythic_skill: true
+  add_mmo_stat: true
+  auto_plant: true
 triggers:
   advancement_done: true
   smite: true
 filters:
   advancements: true
+conditions:
+  in_combat: true
+settings:
+  # In ticks.
+  remove-combat-time: 100

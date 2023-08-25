@@ -4,3 +4,4 @@ main: cn.superiormc.mythiclibreforge.MythicLibreforge
 api-version: 1.17
 softdepend:
   - MythicMobs
+  - MythicLib

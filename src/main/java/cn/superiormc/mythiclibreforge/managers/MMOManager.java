@@ -23,7 +23,7 @@ public class MMOManager {
         this.player = player;
         this.stat = stat;
         this.value = value;
-        this.modifier = new StatModifier("MythicPrefixes_" + id, stat, value, ModifierType.FLAT);
+        this.modifier = new StatModifier("MythicLibreforge_" + id, stat, value, ModifierType.FLAT);
     }
 
     public void addPlayerState() {
@@ -36,6 +36,6 @@ public class MMOManager {
     public void removePlayerState() {
         MMOPlayerData playerData = MMOPlayerData.get(player);
         StatMap statMap = playerData.getStatMap();
-        statMap.getInstance(stat).remove("MythicPrefixes_" + id);
+        statMap.getInstance(stat).remove("MythicLibreforge_" + id);
     }
 }

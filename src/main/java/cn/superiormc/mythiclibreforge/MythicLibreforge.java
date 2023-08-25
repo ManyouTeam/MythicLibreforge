@@ -1,11 +1,14 @@
 package cn.superiormc.mythiclibreforge;
 
+import cn.superiormc.mythiclibreforge.conditions.ConditionInCombat;
 import cn.superiormc.mythiclibreforge.effects.EffectAddMMOStat;
 import cn.superiormc.mythiclibreforge.effects.EffectAutoPlant;
 import cn.superiormc.mythiclibreforge.effects.EffectCastMythicSkill;
 import cn.superiormc.mythiclibreforge.filters.FiltersAdvancements;
+import cn.superiormc.mythiclibreforge.managers.CombatManager;
 import cn.superiormc.mythiclibreforge.triggers.TriggerAdvencementDone;
 import cn.superiormc.mythiclibreforge.triggers.TriggerSmite;
+import com.willfp.libreforge.conditions.Conditions;
 import com.willfp.libreforge.effects.Effects;
 import com.willfp.libreforge.filters.Filters;
 import com.willfp.libreforge.triggers.Triggers;
@@ -21,26 +24,40 @@ public final class MythicLibreforge extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        saveDefaultConfig();
         instance = this;
         config =  instance.getConfig();
-        if (config.getBoolean("effects.cast-mythic-skill")) {
+        if (config.getBoolean("effects.cast_mythic_skill")) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered cast_mythic_skill effect.");
             Effects.INSTANCE.register(new EffectCastMythicSkill());
         }
-        if (config.getBoolean("effects.auto-plant")) {
+        if (config.getBoolean("effects.auto_plant")) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered auto_plant effect.");
             Effects.INSTANCE.register(new EffectAutoPlant());
         }
-        if (config.getBoolean("effects.add-mmo-stat")) {
+        if (config.getBoolean("effects.add_mmo_stat")) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered add_mmo_stat effect.");
             Effects.INSTANCE.register(new EffectAddMMOStat());
         }
         if (config.getBoolean("triggers.advancement_done")) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered advancement_done trigger.");
             Triggers.INSTANCE.register(new TriggerAdvencementDone());
         }
         if (config.getBoolean("triggers.smite")) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered smite trigger.");
             Triggers.INSTANCE.register(new TriggerSmite());
         }
         if (config.getBoolean("filters.advancements")) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered advancements filter.");
             Filters.INSTANCE.register(new FiltersAdvancements());
         }
+        if (config.getBoolean("conditions.in_combat")) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered in_combat condition.");
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §6Warn: This condition is experimental, be careful to use！");
+            Bukkit.getPluginManager().registerEvents(new CombatManager(), this);
+            Conditions.INSTANCE.register(new ConditionInCombat());
+        }
+        CombatManager.checkCombat();
         Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fPlugin is loaded. Author: PQguanfang.");
     }
 
