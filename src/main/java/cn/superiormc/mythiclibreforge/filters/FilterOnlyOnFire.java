@@ -4,11 +4,8 @@ import com.willfp.eco.core.config.interfaces.Config;
 import com.willfp.libreforge.NoCompileData;
 import com.willfp.libreforge.filters.Filter;
 import com.willfp.libreforge.triggers.TriggerData;
-import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-
-import java.util.Collection;
 
 public class FilterOnlyOnFire extends Filter<NoCompileData, Boolean> {
 
