@@ -30,8 +30,7 @@ public class EffectCastMythicSkill extends Effect<NoCompileData> {
 
     @Override
     protected boolean onTrigger(@NotNull Config config, @NotNull TriggerData data, NoCompileData compileData) {
-        if (!Bukkit.getPluginManager().isPluginEnabled("MythicMobs") ||
-        Bukkit.getPluginManager().isPluginEnabled("MythicTotem")) {
+        if (!Bukkit.getPluginManager().isPluginEnabled("MythicMobs")) {
             return false;
         }
         if (data.getPlayer() == null) {
@@ -48,7 +47,7 @@ public class EffectCastMythicSkill extends Effect<NoCompileData> {
         String skill = config.getString("skill");
         List<Entity> targets = new ArrayList();
         targets.add(victim);
-        MythicBukkit.inst().getAPIHelper().castSkill(player, skill, player, player.getLocation(), targets, (Collection)null, 1.0F);
+        MythicBukkit.inst().getAPIHelper().castSkill(player, skill, player, player.getLocation(), targets, null, 1.0F);
         return true;
     }
 

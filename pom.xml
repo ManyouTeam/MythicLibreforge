@@ -6,7 +6,7 @@
 
     <groupId>cn.superiormc</groupId>
     <artifactId>MythicLibreforge</artifactId>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <packaging>jar</packaging>
 
     <name>MythicLibreforge</name>
@@ -98,6 +98,20 @@
             <artifactId>Mythic-Dist</artifactId>
             <version>5.2.3</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>net.Indyuce</groupId>
+            <artifactId>MMOItems</artifactId>
+            <version>6.9.4</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/MMOItems-6.9.4.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>io.lumine</groupId>
+            <artifactId>MythicLib</artifactId>
+            <version>1.6.1</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/MythicLib-1.6.1.jar</systemPath>
         </dependency>
     </dependencies>
 </project>

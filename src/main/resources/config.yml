@@ -1,0 +1,9 @@
+effects:
+  cast-mythic-skill: true
+  add-mmo-stat: true
+  auto-plant: true
+triggers:
+  advancement_done: true
+  smite: true
+filters:
+  advancements: true
