@@ -10,9 +10,9 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Collection;
 
-public class FiltersAdvancements extends Filter<NoCompileData, Collection<String>> {
+public class FilterAdvancements extends Filter<NoCompileData, Collection<String>> {
 
-    public FiltersAdvancements() {
+    public FilterAdvancements() {
         super("advancements");
     }
 
