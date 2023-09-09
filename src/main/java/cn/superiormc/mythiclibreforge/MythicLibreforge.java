@@ -13,6 +13,7 @@ import com.willfp.libreforge.conditions.Conditions;
 import com.willfp.libreforge.effects.Effects;
 import com.willfp.libreforge.filters.Filters;
 import com.willfp.libreforge.triggers.Triggers;
+import io.lumine.mythic.lib.MythicLib;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;

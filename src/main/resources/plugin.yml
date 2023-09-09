@@ -5,3 +5,5 @@ api-version: 1.17
 softdepend:
   - MythicMobs
   - MythicLib
+  - MMOItems
+  - MMOCore

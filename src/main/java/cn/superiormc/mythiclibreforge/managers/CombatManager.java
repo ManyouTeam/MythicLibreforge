@@ -12,10 +12,11 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class CombatManager implements Listener {
 
-    private static Map<Player, Long> combatPlayer = new HashMap<>();
+    private static Map<Player, Long> combatPlayer = new ConcurrentHashMap<>();
 
     @EventHandler
     public void combatEvent(EntityDamageByEntityEvent event) {

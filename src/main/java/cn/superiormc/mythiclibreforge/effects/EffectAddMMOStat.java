@@ -39,8 +39,11 @@ public class EffectAddMMOStat extends Effect<NoCompileData> {
             MMOManager manager = new MMOManager(identifiers.getUuid().toString(),
                     player,
                     id,
-                    config.getDoubleFromExpression("amount"));
-            manager.addPlayerState();
+                    config.getDoubleFromExpression("amount", player));
+            manager.addPlayerStat();
+            if (mmoData.containsKey(player.getUniqueId())) {
+                return;
+            }
             mmoData.put(player.getUniqueId(), manager);
         }
     }
@@ -53,7 +56,7 @@ public class EffectAddMMOStat extends Effect<NoCompileData> {
             if (manager == null) {
                 return;
             }
-            manager.removePlayerState();
+            manager.removePlayerStat();
             mmoData.remove(player.getUniqueId());
         }
     }
