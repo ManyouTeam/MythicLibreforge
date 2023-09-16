@@ -8,6 +8,7 @@ import cn.superiormc.mythiclibreforge.filters.FilterAdvancements;
 import cn.superiormc.mythiclibreforge.filters.FilterOnlyOnFire;
 import cn.superiormc.mythiclibreforge.managers.CombatManager;
 import cn.superiormc.mythiclibreforge.triggers.TriggerAdvencementDone;
+import cn.superiormc.mythiclibreforge.triggers.TriggerSmeltResult;
 import cn.superiormc.mythiclibreforge.triggers.TriggerSmite;
 import com.willfp.libreforge.conditions.Conditions;
 import com.willfp.libreforge.effects.Effects;
@@ -48,6 +49,10 @@ public final class MythicLibreforge extends JavaPlugin {
         if (config.getBoolean("triggers.smite")) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered smite trigger.");
             Triggers.INSTANCE.register(new TriggerSmite());
+        }
+        if (config.getBoolean("triggers.smelt_result", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered smelt_result trigger.");
+            Triggers.INSTANCE.register(new TriggerSmeltResult());
         }
         if (config.getBoolean("filters.advancements")) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered advancements filter.");

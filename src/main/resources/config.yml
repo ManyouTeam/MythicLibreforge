@@ -5,6 +5,7 @@ effects:
 triggers:
   advancement_done: true
   smite: true
+  smelt_result: true
 filters:
   advancements: true
   only_on_fire: true
