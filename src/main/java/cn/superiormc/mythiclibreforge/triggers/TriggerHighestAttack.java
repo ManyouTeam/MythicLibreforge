@@ -43,7 +43,7 @@ public class TriggerHighestAttack extends Trigger {
             return;
         }
         Player player = (Player) event.getDamager();
-        if (!(event.getDamager() instanceof LivingEntity)) {
+        if (!(event.getEntity() instanceof LivingEntity)) {
             return;
         }
         LivingEntity victim = (LivingEntity) event.getEntity();
