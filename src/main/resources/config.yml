@@ -5,7 +5,10 @@ effects:
 triggers:
   advancement_done: true
   smite: true
+  # Solved libreforge's smelt trigger require player must always open UI limits.
   smelt_result: true
+  # Solved libreforge's melee_attack trigger priority problems.
+  highest_attack: true
 filters:
   advancements: true
   only_on_fire: true

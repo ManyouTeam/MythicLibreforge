@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -38,6 +39,11 @@ public class CombatManager implements Listener {
             Player player = (Player) event.getEntity();
             combatPlayer.put(player, MythicLibreforge.config.getLong("settings.remove-combat-time"));
         }
+    }
+
+    @EventHandler
+    public void quitEvent(PlayerQuitEvent event) {
+        combatPlayer.remove(event.getPlayer());
     }
 
     public static void checkCombat() {

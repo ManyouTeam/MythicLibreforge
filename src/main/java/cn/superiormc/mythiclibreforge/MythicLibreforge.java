@@ -8,6 +8,7 @@ import cn.superiormc.mythiclibreforge.filters.FilterAdvancements;
 import cn.superiormc.mythiclibreforge.filters.FilterOnlyOnFire;
 import cn.superiormc.mythiclibreforge.managers.CombatManager;
 import cn.superiormc.mythiclibreforge.triggers.TriggerAdvencementDone;
+import cn.superiormc.mythiclibreforge.triggers.TriggerHighestAttack;
 import cn.superiormc.mythiclibreforge.triggers.TriggerSmeltResult;
 import cn.superiormc.mythiclibreforge.triggers.TriggerSmite;
 import com.willfp.libreforge.conditions.Conditions;
@@ -49,6 +50,10 @@ public final class MythicLibreforge extends JavaPlugin {
         if (config.getBoolean("triggers.smite")) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered smite trigger.");
             Triggers.INSTANCE.register(new TriggerSmite());
+        }
+        if (config.getBoolean("triggers.highest_attack", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered highest_attack trigger.");
+            Triggers.INSTANCE.register(new TriggerHighestAttack());
         }
         if (config.getBoolean("triggers.smelt_result", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered smelt_result trigger.");
