@@ -12,8 +12,10 @@ triggers:
 filters:
   advancements: true
   only_on_fire: true
+  at_location: true
 conditions:
   in_combat: true
 settings:
+  debug: false
   # In ticks.
   remove-combat-time: 100

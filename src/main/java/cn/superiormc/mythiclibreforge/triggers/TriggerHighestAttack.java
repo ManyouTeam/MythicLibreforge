@@ -37,7 +37,7 @@ public class TriggerHighestAttack extends Trigger {
         return data;
     }
 
-    @EventHandler (priority = EventPriority.HIGHEST)
+    @EventHandler (priority = EventPriority.MONITOR)
     public void handle(EntityDamageByEntityEvent event) {
         if (!(event.getDamager() instanceof Player)) {
             return;

@@ -5,6 +5,7 @@ import cn.superiormc.mythiclibreforge.effects.EffectAddMMOStat;
 import cn.superiormc.mythiclibreforge.effects.EffectAutoPlant;
 import cn.superiormc.mythiclibreforge.effects.EffectCastMythicSkill;
 import cn.superiormc.mythiclibreforge.filters.FilterAdvancements;
+import cn.superiormc.mythiclibreforge.filters.FilterAtLocation;
 import cn.superiormc.mythiclibreforge.filters.FilterOnlyOnFire;
 import cn.superiormc.mythiclibreforge.managers.CombatManager;
 import cn.superiormc.mythiclibreforge.triggers.TriggerAdvencementDone;
@@ -66,6 +67,10 @@ public final class MythicLibreforge extends JavaPlugin {
         if (config.getBoolean("filters.only_on_fire")) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered only_on_fire filter.");
             Filters.INSTANCE.register(new FilterOnlyOnFire());
+        }
+        if (config.getBoolean("filters.at_location", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered at_location filter.");
+            Filters.INSTANCE.register(new FilterAtLocation());
         }
         if (config.getBoolean("conditions.in_combat")) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered in_combat condition.");
