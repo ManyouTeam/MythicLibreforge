@@ -6,6 +6,7 @@ import cn.superiormc.mythiclibreforge.effects.EffectAutoPlant;
 import cn.superiormc.mythiclibreforge.effects.EffectCastMythicSkill;
 import cn.superiormc.mythiclibreforge.filters.FilterAdvancements;
 import cn.superiormc.mythiclibreforge.filters.FilterAtLocation;
+import cn.superiormc.mythiclibreforge.filters.FilterIsCrit;
 import cn.superiormc.mythiclibreforge.filters.FilterOnlyOnFire;
 import cn.superiormc.mythiclibreforge.managers.CombatManager;
 import cn.superiormc.mythiclibreforge.triggers.TriggerAdvencementDone;
@@ -16,7 +17,6 @@ import com.willfp.libreforge.conditions.Conditions;
 import com.willfp.libreforge.effects.Effects;
 import com.willfp.libreforge.filters.Filters;
 import com.willfp.libreforge.triggers.Triggers;
-import io.lumine.mythic.lib.MythicLib;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -71,6 +71,10 @@ public final class MythicLibreforge extends JavaPlugin {
         if (config.getBoolean("filters.at_location", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered at_location filter.");
             Filters.INSTANCE.register(new FilterAtLocation());
+        }
+        if (config.getBoolean("filters.is_crit", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered is_crit filter.");
+            Filters.INSTANCE.register(new FilterIsCrit());
         }
         if (config.getBoolean("conditions.in_combat")) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered in_combat condition.");

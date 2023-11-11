@@ -13,6 +13,7 @@ filters:
   advancements: true
   only_on_fire: true
   at_location: true
+  is_crit: true
 conditions:
   in_combat: true
 settings:
