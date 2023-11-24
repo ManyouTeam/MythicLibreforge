@@ -41,10 +41,10 @@ public class EffectAddMMOStat extends Effect<NoCompileData> {
                     id,
                     config.getDoubleFromExpression("amount", player));
             manager.addPlayerStat();
-            if (mmoData.containsKey(player.getUniqueId())) {
+            if (mmoData.containsKey(identifiers.getUuid())) {
                 return;
             }
-            mmoData.put(player.getUniqueId(), manager);
+            mmoData.put(identifiers.getUuid(), manager);
         }
     }
 
@@ -52,12 +52,12 @@ public class EffectAddMMOStat extends Effect<NoCompileData> {
     protected void onDisable(@NotNull Player player, @NotNull Identifiers identifiers, @NotNull ProvidedHolder holder) {
         if (Bukkit.getPluginManager().isPluginEnabled("MythicLib")) {
             players.remove(player.getUniqueId());
-            MMOManager manager = mmoData.get(player.getUniqueId());
+            MMOManager manager = mmoData.get(identifiers.getUuid());
             if (manager == null) {
                 return;
             }
             manager.removePlayerStat();
-            mmoData.remove(player.getUniqueId());
+            mmoData.remove(identifiers.getUuid());
         }
     }
 
