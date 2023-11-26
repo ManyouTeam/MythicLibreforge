@@ -1,9 +1,7 @@
 package cn.superiormc.mythiclibreforge;
 
 import cn.superiormc.mythiclibreforge.conditions.ConditionInCombat;
-import cn.superiormc.mythiclibreforge.effects.EffectAddMMOStat;
-import cn.superiormc.mythiclibreforge.effects.EffectAutoPlant;
-import cn.superiormc.mythiclibreforge.effects.EffectCastMythicSkill;
+import cn.superiormc.mythiclibreforge.effects.*;
 import cn.superiormc.mythiclibreforge.filters.FilterAdvancements;
 import cn.superiormc.mythiclibreforge.filters.FilterAtLocation;
 import cn.superiormc.mythiclibreforge.filters.FilterIsCrit;
@@ -32,23 +30,39 @@ public final class MythicLibreforge extends JavaPlugin {
         saveDefaultConfig();
         instance = this;
         config =  instance.getConfig();
-        if (config.getBoolean("effects.cast_mythic_skill")) {
+        if (config.getBoolean("effects.cast_mythic_skill", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered cast_mythic_skill effect.");
             Effects.INSTANCE.register(new EffectCastMythicSkill());
         }
-        if (config.getBoolean("effects.auto_plant")) {
+        if (config.getBoolean("effects.auto_plant", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered auto_plant effect.");
             Effects.INSTANCE.register(new EffectAutoPlant());
         }
-        if (config.getBoolean("effects.add_mmo_stat")) {
+        if (config.getBoolean("effects.add_mmo_stat", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered add_mmo_stat effect.");
             Effects.INSTANCE.register(new EffectAddMMOStat());
         }
-        if (config.getBoolean("triggers.advancement_done")) {
+        if (config.getBoolean("effects.open_anvil", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered open_anvil effect.");
+            Effects.INSTANCE.register(new EffectOpenAnvil());
+        }
+        if (config.getBoolean("effects.open_disposal", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered open_disposal effect.");
+            Effects.INSTANCE.register(new EffectOpenDisposal());
+        }
+        if (config.getBoolean("effects.open_enchanting", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered open_enchanting effect.");
+            Effects.INSTANCE.register(new EffectOpenEnchanting());
+        }
+        if (config.getBoolean("effects.open_enchanting", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered open_enchanting effect.");
+            Effects.INSTANCE.register(new EffectOpenEnchanting());
+        }
+        if (config.getBoolean("triggers.advancement_done", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered advancement_done trigger.");
             Triggers.INSTANCE.register(new TriggerAdvencementDone());
         }
-        if (config.getBoolean("triggers.smite")) {
+        if (config.getBoolean("triggers.smite", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered smite trigger.");
             Triggers.INSTANCE.register(new TriggerSmite());
         }
@@ -60,11 +74,11 @@ public final class MythicLibreforge extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered smelt_result trigger.");
             Triggers.INSTANCE.register(new TriggerSmeltResult());
         }
-        if (config.getBoolean("filters.advancements")) {
+        if (config.getBoolean("filters.advancements", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered advancements filter.");
             Filters.INSTANCE.register(new FilterAdvancements());
         }
-        if (config.getBoolean("filters.only_on_fire")) {
+        if (config.getBoolean("filters.only_on_fire", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered only_on_fire filter.");
             Filters.INSTANCE.register(new FilterOnlyOnFire());
         }
@@ -76,9 +90,8 @@ public final class MythicLibreforge extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered is_crit filter.");
             Filters.INSTANCE.register(new FilterIsCrit());
         }
-        if (config.getBoolean("conditions.in_combat")) {
-            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered in_combat condition.");
-            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §6Warn: This condition is experimental, be careful to use！");
+        if (config.getBoolean("conditions.in_combat", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered in_combat condition.");Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §6Warn: This condition is experimental, be careful to use！");
             Bukkit.getPluginManager().registerEvents(new CombatManager(), this);
             Conditions.INSTANCE.register(new ConditionInCombat());
         }

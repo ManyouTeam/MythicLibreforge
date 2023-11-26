@@ -1,5 +1,7 @@
 package cn.superiormc.mythiclibreforge.triggers;
 
+import com.willfp.libreforge.Dispatcher;
+import com.willfp.libreforge.DispatcherKt;
 import com.willfp.libreforge.Holder;
 import com.willfp.libreforge.ProvidedHolder;
 import com.willfp.libreforge.triggers.Trigger;
@@ -16,6 +18,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class TriggerSmeltResult extends Trigger {
@@ -53,6 +56,28 @@ public class TriggerSmeltResult extends Trigger {
             return;
         }
         ProvidedHolder holder = new ProvidedHolder() {
+            @Override
+            public boolean isShowingAnyNotMet(@NotNull Player player) {
+                return false;
+            }
+
+            @Override
+            public boolean isShowingAnyNotMet(@NotNull Dispatcher<?> dispatcher) {
+                return false;
+            }
+
+            @NotNull
+            @Override
+            public List<String> getNotMetLines(@NotNull Player player) {
+                return null;
+            }
+
+            @NotNull
+            @Override
+            public List<String> getNotMetLines(@NotNull Dispatcher<?> dispatcher) {
+                return null;
+            }
+
             @NotNull
             @Override
             public Holder getHolder() {
@@ -78,6 +103,7 @@ public class TriggerSmeltResult extends Trigger {
             }
         };
         TriggerData data = new TriggerData(holder,
+                DispatcherKt.toDispatcher(player),
                 player,
                 null,
                 null,
@@ -89,7 +115,7 @@ public class TriggerSmeltResult extends Trigger {
                 null,
                 item.getAmount(),
                 player);
-        this.dispatch(player, data, null);
+        this.dispatch(DispatcherKt.toDispatcher(player), data, null);
 
     }
 }

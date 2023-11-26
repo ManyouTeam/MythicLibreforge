@@ -1,5 +1,7 @@
 package cn.superiormc.mythiclibreforge.triggers;
 
+import com.willfp.libreforge.Dispatcher;
+import com.willfp.libreforge.DispatcherKt;
 import com.willfp.libreforge.Holder;
 import com.willfp.libreforge.ProvidedHolder;
 import com.willfp.libreforge.triggers.Trigger;
@@ -13,6 +15,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class TriggerAdvencementDone extends Trigger {
@@ -41,15 +44,32 @@ public class TriggerAdvencementDone extends Trigger {
         Location location = event.getPlayer().getLocation();
         String text = event.getAdvancement().getKey().toString();
         ProvidedHolder holder = new ProvidedHolder() {
+
+            @Override
+            public boolean isShowingAnyNotMet(@NotNull Player player) {
+                return false;
+            }
+
+            @Override
+            public boolean isShowingAnyNotMet(@NotNull Dispatcher<?> dispatcher) {
+                return false;
+            }
+
             @NotNull
             @Override
-            public Holder getHolder() {
+            public List<String> getNotMetLines(@NotNull Player player) {
+                return null;
+            }
+
+            @NotNull
+            @Override
+            public List<String> getNotMetLines(@NotNull Dispatcher<?> dispatcher) {
                 return null;
             }
 
             @Nullable
             @Override
-            public Object getProvider() {
+            public Object component2() {
                 return null;
             }
 
@@ -61,11 +81,18 @@ public class TriggerAdvencementDone extends Trigger {
 
             @Nullable
             @Override
-            public Object component2() {
+            public Object getProvider() {
+                return null;
+            }
+
+            @NotNull
+            @Override
+            public Holder getHolder() {
                 return null;
             }
         };
         TriggerData data = new TriggerData(holder,
+                DispatcherKt.toDispatcher(player),
                 player,
                 null,
                 null,
@@ -77,6 +104,6 @@ public class TriggerAdvencementDone extends Trigger {
                 text,
                 1,
                 player);
-        this.dispatch(player, data, null);
+        this.dispatch(DispatcherKt.toDispatcher(player), data, null);
     }
 }

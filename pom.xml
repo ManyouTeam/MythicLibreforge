@@ -6,7 +6,7 @@
 
     <groupId>cn.superiormc</groupId>
     <artifactId>MythicLibreforge</artifactId>
-    <version>1.1.6</version>
+    <version>1.2.0</version>
     <packaging>jar</packaging>
 
     <name>MythicLibreforge</name>
@@ -58,6 +58,10 @@
             <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
         </repository>
         <repository>
+            <id>paper-repo</id>
+            <url>https://repo.papermc.io/repository/maven-public/</url>
+        </repository>
+        <repository>
             <id>sonatype</id>
             <url>https://oss.sonatype.org/content/groups/public/</url>
         </repository>
@@ -74,6 +78,12 @@
 
     <dependencies>
         <dependency>
+            <groupId>io.papermc.paper</groupId>
+            <artifactId>paper-api</artifactId>
+            <version>1.20.2-R0.1-SNAPSHOT</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
             <version>1.17-R0.1-SNAPSHOT</version>
@@ -82,9 +92,9 @@
         <dependency>
             <groupId>com.github.Auxilor</groupId>
             <artifactId>libreforge</artifactId>
-            <version>4.25.5</version>
+            <version>4.45.0</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/lib/libreforge-4.25.4-shadow.jar</systemPath>
+            <systemPath>${project.basedir}/lib/libreforge-4.45.0-shadow.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.github.Auxilor</groupId>

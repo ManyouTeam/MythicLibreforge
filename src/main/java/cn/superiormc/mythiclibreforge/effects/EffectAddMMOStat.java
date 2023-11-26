@@ -2,10 +2,7 @@ package cn.superiormc.mythiclibreforge.effects;
 
 import cn.superiormc.mythiclibreforge.managers.MMOManager;
 import com.willfp.eco.core.config.interfaces.Config;
-import com.willfp.libreforge.ConfigArguments;
-import com.willfp.libreforge.ConfigArgumentsBuilder;
-import com.willfp.libreforge.NoCompileData;
-import com.willfp.libreforge.ProvidedHolder;
+import com.willfp.libreforge.*;
 import com.willfp.libreforge.effects.Effect;
 import com.willfp.libreforge.effects.Identifiers;
 import org.bukkit.Bukkit;
@@ -32,8 +29,10 @@ public class EffectAddMMOStat extends Effect<NoCompileData> {
     }
 
     @Override
-    protected void onEnable(@NotNull Player player, @NotNull Config config, @NotNull Identifiers identifiers, @NotNull ProvidedHolder holder, NoCompileData compileData) {
-        if (Bukkit.getPluginManager().isPluginEnabled("MythicLib")) {
+    protected void onEnable(@NotNull Dispatcher<?> dispatcher, @NotNull Config config, @NotNull Identifiers identifiers, @NotNull ProvidedHolder holder, NoCompileData compileData) {
+        if (Bukkit.getPluginManager().isPluginEnabled("MythicLib") &&
+                dispatcher.getDispatcher() instanceof Player) {
+            Player player = ((Player)dispatcher.getDispatcher());
             players.put(player.getUniqueId(), identifiers.getUuid());
             String id = config.getString("stat").toUpperCase();
             MMOManager manager = new MMOManager(identifiers.getUuid().toString(),
@@ -49,8 +48,10 @@ public class EffectAddMMOStat extends Effect<NoCompileData> {
     }
 
     @Override
-    protected void onDisable(@NotNull Player player, @NotNull Identifiers identifiers, @NotNull ProvidedHolder holder) {
-        if (Bukkit.getPluginManager().isPluginEnabled("MythicLib")) {
+    protected void onDisable(@NotNull Dispatcher<?> dispatcher, @NotNull Identifiers identifiers, @NotNull ProvidedHolder holder) {
+        if (Bukkit.getPluginManager().isPluginEnabled("MythicLib")
+        && dispatcher.getDispatcher() instanceof Player) {
+            Player player = ((Player)dispatcher.getDispatcher());
             players.remove(player.getUniqueId());
             MMOManager manager = mmoData.get(identifiers.getUuid());
             if (manager == null) {

@@ -1,5 +1,7 @@
 package cn.superiormc.mythiclibreforge.triggers;
 
+import com.willfp.libreforge.Dispatcher;
+import com.willfp.libreforge.DispatcherKt;
 import com.willfp.libreforge.Holder;
 import com.willfp.libreforge.ProvidedHolder;
 import com.willfp.libreforge.triggers.Trigger;
@@ -10,13 +12,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class TriggerHighestAttack extends Trigger {
@@ -39,15 +40,43 @@ public class TriggerHighestAttack extends Trigger {
 
     @EventHandler (priority = EventPriority.MONITOR)
     public void handle(EntityDamageByEntityEvent event) {
-        if (!(event.getDamager() instanceof Player)) {
+        if (!(event.getEntity() instanceof LivingEntity
+        || !(event.getDamager() instanceof LivingEntity))) {
             return;
         }
-        Player player = (Player) event.getDamager();
-        if (!(event.getEntity() instanceof LivingEntity)) {
-            return;
+        LivingEntity entity = (LivingEntity) event.getDamager();
+        Player player = null;
+        if (event.getDamager() instanceof Player) {
+            player = (Player) event.getDamager();
+        }
+        ItemStack item = null;
+        if (entity.getEquipment() != null) {
+            item = entity.getEquipment().getItemInMainHand();
         }
         LivingEntity victim = (LivingEntity) event.getEntity();
         ProvidedHolder holder = new ProvidedHolder() {
+            @Override
+            public boolean isShowingAnyNotMet(@NotNull Player player) {
+                return false;
+            }
+
+            @Override
+            public boolean isShowingAnyNotMet(@NotNull Dispatcher<?> dispatcher) {
+                return false;
+            }
+
+            @NotNull
+            @Override
+            public List<String> getNotMetLines(@NotNull Player player) {
+                return null;
+            }
+
+            @NotNull
+            @Override
+            public List<String> getNotMetLines(@NotNull Dispatcher<?> dispatcher) {
+                return null;
+            }
+
             @NotNull
             @Override
             public Holder getHolder() {
@@ -73,6 +102,7 @@ public class TriggerHighestAttack extends Trigger {
             }
         };
         TriggerData data = new TriggerData(holder,
+                DispatcherKt.toDispatcher(entity),
                 player,
                 victim,
                 null,
@@ -80,11 +110,11 @@ public class TriggerHighestAttack extends Trigger {
                 victim.getLocation(),
                 null,
                 null,
-                player.getInventory().getItemInMainHand(),
+                item,
                 null,
                 event.getDamage(),
                 player);
-        this.dispatch(player, data, null);
+        this.dispatch(DispatcherKt.toDispatcher(player), data, null);
 
     }
 }

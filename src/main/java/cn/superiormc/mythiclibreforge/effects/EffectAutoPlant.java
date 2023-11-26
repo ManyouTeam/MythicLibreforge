@@ -2,6 +2,8 @@ package cn.superiormc.mythiclibreforge.effects;
 
 import cn.superiormc.mythiclibreforge.MythicLibreforge;
 import com.willfp.eco.core.config.interfaces.Config;
+import com.willfp.libreforge.Dispatcher;
+import com.willfp.libreforge.DispatcherKt;
 import com.willfp.libreforge.NoCompileData;
 import com.willfp.libreforge.ProvidedHolder;
 import com.willfp.libreforge.effects.Effect;
@@ -37,13 +39,17 @@ public class EffectAutoPlant extends Effect<NoCompileData> {
     }
 
     @Override
-    protected void onEnable(@NotNull Player player, @NotNull Config config, @NotNull Identifiers identifiers, @NotNull ProvidedHolder holder, NoCompileData compileData) {
-        players.put(player.getUniqueId(), identifiers.getUuid());
+    protected void onEnable(@NotNull Dispatcher<?> dispatcher, @NotNull Config config, @NotNull Identifiers identifiers, @NotNull ProvidedHolder holder, NoCompileData compileData) {
+        if (dispatcher.getDispatcher() instanceof Player) {
+            players.put(((Player)dispatcher.getDispatcher()).getUniqueId(), identifiers.getUuid());
+        }
     }
 
     @Override
-    protected void onDisable(@NotNull Player player, @NotNull Identifiers identifiers, @NotNull ProvidedHolder holder) {
-        players.remove(player.getUniqueId());
+    protected void onDisable(@NotNull Dispatcher<?> dispatcher, @NotNull Identifiers identifiers, @NotNull ProvidedHolder holder) {
+        if (dispatcher.getDispatcher() instanceof Player) {
+            players.remove(((Player)dispatcher.getDispatcher()).getUniqueId());
+        }
     }
 
     @EventHandler(ignoreCancelled = true, priority = EventPriority.LOW)

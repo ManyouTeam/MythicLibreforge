@@ -2,6 +2,11 @@ effects:
   cast_mythic_skill: true
   add_mmo_stat: true
   auto_plant: true
+  # Require Paper
+  open_anvil: true
+  open_disposal: true
+  open_enchanting: true
+  open_workbench: true
 triggers:
   advancement_done: true
   smite: true
