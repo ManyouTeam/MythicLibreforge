@@ -32,7 +32,7 @@ public class EffectOpenDisposal extends Effect<NoCompileData> {
         if (player == null) {
             return false;
         }
-        player.openInventory(Bukkit.createInventory(null, config.getInt("size", 54), config.getString("title")));
+        player.openInventory(Bukkit.createInventory(null, config.getInt("size", 54), config.getFormattedString("title")));
         return true;
     }
 

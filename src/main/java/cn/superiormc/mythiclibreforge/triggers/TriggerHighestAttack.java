@@ -114,7 +114,7 @@ public class TriggerHighestAttack extends Trigger {
                 null,
                 event.getDamage(),
                 player);
-        this.dispatch(DispatcherKt.toDispatcher(player), data, null);
+        this.dispatch(DispatcherKt.toDispatcher(entity), data, null);
 
     }
 }
