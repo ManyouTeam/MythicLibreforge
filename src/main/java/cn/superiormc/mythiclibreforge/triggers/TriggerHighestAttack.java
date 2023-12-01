@@ -40,8 +40,8 @@ public class TriggerHighestAttack extends Trigger {
 
     @EventHandler (priority = EventPriority.MONITOR)
     public void handle(EntityDamageByEntityEvent event) {
-        if (!(event.getEntity() instanceof LivingEntity
-        || !(event.getDamager() instanceof LivingEntity))) {
+        if (!(event.getEntity() instanceof LivingEntity)
+        || !(event.getDamager() instanceof LivingEntity)) {
             return;
         }
         LivingEntity entity = (LivingEntity) event.getDamager();
