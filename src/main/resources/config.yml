@@ -6,21 +6,21 @@ effects:
   open_anvil: true
   open_disposal: true
   open_enchanting: true
-  open_workbench: true
+  quick_equip: true
 triggers:
-  advancement_done: true
-  smite: true
   # Solved libreforge's smelt trigger require player must always open UI limits.
   smelt_result: true
   # Solved libreforge's melee_attack trigger priority problems.
   highest_attack: true
 filters:
-  advancements: true
   only_on_fire: true
   at_location: true
   is_crit: true
+  has_enchantment: true
 conditions:
   in_combat: true
+arguments:
+  damage_item: false
 settings:
   debug: false
   # In ticks.

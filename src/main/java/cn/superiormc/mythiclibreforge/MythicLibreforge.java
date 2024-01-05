@@ -1,18 +1,18 @@
 package cn.superiormc.mythiclibreforge;
 
+import cn.superiormc.mythiclibreforge.arguments.ArgDamageItem;
 import cn.superiormc.mythiclibreforge.conditions.ConditionInCombat;
 import cn.superiormc.mythiclibreforge.effects.*;
-import cn.superiormc.mythiclibreforge.filters.FilterAdvancements;
 import cn.superiormc.mythiclibreforge.filters.FilterAtLocation;
+import cn.superiormc.mythiclibreforge.filters.FilterHasEnchantment;
 import cn.superiormc.mythiclibreforge.filters.FilterIsCrit;
 import cn.superiormc.mythiclibreforge.filters.FilterOnlyOnFire;
 import cn.superiormc.mythiclibreforge.managers.CombatManager;
-import cn.superiormc.mythiclibreforge.triggers.TriggerAdvencementDone;
 import cn.superiormc.mythiclibreforge.triggers.TriggerHighestAttack;
 import cn.superiormc.mythiclibreforge.triggers.TriggerSmeltResult;
-import cn.superiormc.mythiclibreforge.triggers.TriggerSmite;
 import com.willfp.libreforge.conditions.Conditions;
 import com.willfp.libreforge.effects.Effects;
+import com.willfp.libreforge.effects.arguments.EffectArguments;
 import com.willfp.libreforge.filters.Filters;
 import com.willfp.libreforge.triggers.Triggers;
 import org.bukkit.Bukkit;
@@ -54,17 +54,9 @@ public final class MythicLibreforge extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered open_enchanting effect.");
             Effects.INSTANCE.register(new EffectOpenEnchanting());
         }
-        if (config.getBoolean("effects.open_enchanting", true)) {
-            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered open_enchanting effect.");
-            Effects.INSTANCE.register(new EffectOpenEnchanting());
-        }
-        if (config.getBoolean("triggers.advancement_done", true)) {
-            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered advancement_done trigger.");
-            Triggers.INSTANCE.register(new TriggerAdvencementDone());
-        }
-        if (config.getBoolean("triggers.smite", true)) {
-            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered smite trigger.");
-            Triggers.INSTANCE.register(new TriggerSmite());
+        if (config.getBoolean("effects.quick_equip", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered quick_equip effect.");
+            Effects.INSTANCE.register(new EffectQuickEquip());
         }
         if (config.getBoolean("triggers.highest_attack", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered highest_attack trigger.");
@@ -73,10 +65,6 @@ public final class MythicLibreforge extends JavaPlugin {
         if (config.getBoolean("triggers.smelt_result", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered smelt_result trigger.");
             Triggers.INSTANCE.register(new TriggerSmeltResult());
-        }
-        if (config.getBoolean("filters.advancements", true)) {
-            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered advancements filter.");
-            Filters.INSTANCE.register(new FilterAdvancements());
         }
         if (config.getBoolean("filters.only_on_fire", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered only_on_fire filter.");
@@ -90,12 +78,20 @@ public final class MythicLibreforge extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered is_crit filter.");
             Filters.INSTANCE.register(new FilterIsCrit());
         }
+        if (config.getBoolean("filters.has_enchantment", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered has_enchantment filter.");
+            Filters.INSTANCE.register(new FilterHasEnchantment());
+        }
+        if (config.getBoolean("arguments.damage_item", false)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered damage_item arguments.");
+            EffectArguments.INSTANCE.register(new ArgDamageItem());
+        }
         if (config.getBoolean("conditions.in_combat", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered in_combat condition.");Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §6Warn: This condition is experimental, be careful to use！");
             Bukkit.getPluginManager().registerEvents(new CombatManager(), this);
             Conditions.INSTANCE.register(new ConditionInCombat());
+            CombatManager.checkCombat();
         }
-        CombatManager.checkCombat();
         Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fPlugin is loaded. Author: PQguanfang.");
     }
 
