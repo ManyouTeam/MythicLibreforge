@@ -1,9 +1,6 @@
 package cn.superiormc.mythiclibreforge.triggers;
 
-import com.willfp.libreforge.Dispatcher;
 import com.willfp.libreforge.DispatcherKt;
-import com.willfp.libreforge.Holder;
-import com.willfp.libreforge.ProvidedHolder;
 import com.willfp.libreforge.triggers.Trigger;
 import com.willfp.libreforge.triggers.TriggerData;
 import com.willfp.libreforge.triggers.TriggerParameter;
@@ -14,10 +11,8 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.inventory.ItemStack;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class TriggerHighestAttack extends Trigger {
@@ -54,55 +49,7 @@ public class TriggerHighestAttack extends Trigger {
             item = entity.getEquipment().getItemInMainHand();
         }
         LivingEntity victim = (LivingEntity) event.getEntity();
-        ProvidedHolder holder = new ProvidedHolder() {
-            @Override
-            public boolean isShowingAnyNotMet(@NotNull Player player) {
-                return false;
-            }
-
-            @Override
-            public boolean isShowingAnyNotMet(@NotNull Dispatcher<?> dispatcher) {
-                return false;
-            }
-
-            @NotNull
-            @Override
-            public List<String> getNotMetLines(@NotNull Player player) {
-                return null;
-            }
-
-            @NotNull
-            @Override
-            public List<String> getNotMetLines(@NotNull Dispatcher<?> dispatcher) {
-                return null;
-            }
-
-            @NotNull
-            @Override
-            public Holder getHolder() {
-                return null;
-            }
-
-            @Nullable
-            @Override
-            public Object getProvider() {
-                return null;
-            }
-
-            @NotNull
-            @Override
-            public Holder component1() {
-                return null;
-            }
-
-            @Nullable
-            @Override
-            public Object component2() {
-                return null;
-            }
-        };
-        TriggerData data = new TriggerData(holder,
-                DispatcherKt.toDispatcher(entity),
+        TriggerData data = new TriggerData(DispatcherKt.toDispatcher(entity),
                 player,
                 victim,
                 null,
@@ -112,8 +59,7 @@ public class TriggerHighestAttack extends Trigger {
                 null,
                 item,
                 null,
-                event.getDamage(),
-                player);
+                event.getDamage());
         this.dispatch(DispatcherKt.toDispatcher(entity), data, null);
 
     }
