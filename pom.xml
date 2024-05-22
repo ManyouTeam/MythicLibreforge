@@ -6,7 +6,7 @@
 
     <groupId>cn.superiormc</groupId>
     <artifactId>MythicLibreforge</artifactId>
-    <version>1.3.1</version>
+    <version>1.3.2</version>
     <packaging>jar</packaging>
 
     <name>MythicLibreforge</name>
@@ -104,12 +104,6 @@
             <systemPath>${project.basedir}/lib/eco-6.65.0-all.jar</systemPath>
         </dependency>
         <dependency>
-            <groupId>io.lumine</groupId>
-            <artifactId>Mythic-Dist</artifactId>
-            <version>5.2.3</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>net.Indyuce</groupId>
             <artifactId>MMOItems</artifactId>
             <version>6.9.4</version>
@@ -122,6 +116,18 @@
             <version>1.6.1</version>
             <scope>system</scope>
             <systemPath>${project.basedir}/lib/MythicLib-1.6.1.jar</systemPath>
+        </dependency>
+        <dependency>
+            <groupId>io.lumine.xikage</groupId>
+            <artifactId>MythicMobs</artifactId>
+            <version>4.11.0</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.lumine</groupId>
+            <artifactId>Mythic-Dist</artifactId>
+            <version>5.2.3</version>
+            <scope>provided</scope>
         </dependency>
     </dependencies>
 </project>

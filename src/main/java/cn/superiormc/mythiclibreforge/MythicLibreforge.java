@@ -3,10 +3,7 @@ package cn.superiormc.mythiclibreforge;
 import cn.superiormc.mythiclibreforge.arguments.ArgDamageItem;
 import cn.superiormc.mythiclibreforge.conditions.ConditionInCombat;
 import cn.superiormc.mythiclibreforge.effects.*;
-import cn.superiormc.mythiclibreforge.filters.FilterAtLocation;
-import cn.superiormc.mythiclibreforge.filters.FilterHasEnchantment;
-import cn.superiormc.mythiclibreforge.filters.FilterIsCrit;
-import cn.superiormc.mythiclibreforge.filters.FilterOnlyOnFire;
+import cn.superiormc.mythiclibreforge.filters.*;
 import cn.superiormc.mythiclibreforge.managers.CombatManager;
 import cn.superiormc.mythiclibreforge.triggers.TriggerHighestAttack;
 import cn.superiormc.mythiclibreforge.triggers.TriggerSmeltResult;
@@ -81,6 +78,8 @@ public final class MythicLibreforge extends JavaPlugin {
         if (config.getBoolean("filters.has_enchantment", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered has_enchantment filter.");
             Filters.INSTANCE.register(new FilterHasEnchantment());
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered dont_has_enchantment filter.");
+            Filters.INSTANCE.register(new FilterDontHasEnchantment());
         }
         if (config.getBoolean("arguments.damage_item", false)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered damage_item arguments.");
