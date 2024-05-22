@@ -1,4 +1,9 @@
+# MythicLibreforge by @PQguanfang
+#
+# Read the Wiki: simple.superiormc.cn
+
 effects:
+  apply_reforge: true
   cast_mythic_skill: true
   add_mmo_stat: true
   auto_plant: true

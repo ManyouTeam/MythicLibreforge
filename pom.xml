@@ -6,7 +6,7 @@
 
     <groupId>cn.superiormc</groupId>
     <artifactId>MythicLibreforge</artifactId>
-    <version>1.3.2</version>
+    <version>1.3.3</version>
     <packaging>jar</packaging>
 
     <name>MythicLibreforge</name>
@@ -70,6 +70,10 @@
             <url>https://www.jitpack.io</url>
         </repository>
         <repository>
+            <id>auxilor</id>
+            <url>https://repo.auxilor.io/repository/maven-public/</url>
+        </repository>
+        <repository>
             <id>nexus</id>
             <name>Lumine Releases</name>
             <url>https://mvn.lumine.io/repository/maven-public/</url>
@@ -90,25 +94,22 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.Auxilor</groupId>
+            <groupId>com.willfp</groupId>
             <artifactId>libreforge</artifactId>
-            <version>4.53.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/libreforge-4.53.0-all.jar</systemPath>
+            <version>4.56.3</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.github.Auxilor</groupId>
+            <groupId>com.willfp</groupId>
             <artifactId>eco</artifactId>
-            <version>6.65.0</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/eco-6.65.0-all.jar</systemPath>
+            <version>6.70.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>net.Indyuce</groupId>
-            <artifactId>MMOItems</artifactId>
-            <version>6.9.4</version>
-            <scope>system</scope>
-            <systemPath>${project.basedir}/lib/CustomFishing-1.3.2.1-all.jar</systemPath>
+            <groupId>com.willfp</groupId>
+            <artifactId>Reforges</artifactId>
+            <version>6.57.1</version>
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.lumine</groupId>
