@@ -6,7 +6,7 @@
 
     <groupId>cn.superiormc</groupId>
     <artifactId>MythicLibreforge</artifactId>
-    <version>1.3.3</version>
+    <version>1.3.4</version>
     <packaging>jar</packaging>
 
     <name>MythicLibreforge</name>
@@ -54,10 +54,6 @@
 
     <repositories>
         <repository>
-            <id>spigotmc-repo</id>
-            <url>https://hub.spigotmc.org/nexus/content/repositories/snapshots/</url>
-        </repository>
-        <repository>
             <id>paper-repo</id>
             <url>https://repo.papermc.io/repository/maven-public/</url>
         </repository>
@@ -88,21 +84,16 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>org.spigotmc</groupId>
-            <artifactId>spigot-api</artifactId>
-            <version>1.17-R0.1-SNAPSHOT</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
             <groupId>com.willfp</groupId>
             <artifactId>libreforge</artifactId>
-            <version>4.56.3</version>
-            <scope>provided</scope>
+            <version>4.65.0</version>
+            <scope>system</scope>
+            <systemPath>${project.basedir}/lib/libreforge-4.65.0.jar</systemPath>
         </dependency>
         <dependency>
             <groupId>com.willfp</groupId>
             <artifactId>eco</artifactId>
-            <version>6.70.1</version>
+            <version>6.71.5</version>
             <scope>provided</scope>
         </dependency>
         <dependency>

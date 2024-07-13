@@ -64,7 +64,7 @@ public class EffectCastMythicSkill extends Effect<NoCompileData> {
     public ConfigArguments getArguments() {
         ConfigArgumentsBuilder builder = new ConfigArgumentsBuilder();
         builder.require("skill", "You must specify the skill to cast!");
-        return builder.build$core();
+        return builder.build$common();
     }
 
 }

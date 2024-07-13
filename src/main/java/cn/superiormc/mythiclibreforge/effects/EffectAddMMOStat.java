@@ -68,6 +68,6 @@ public class EffectAddMMOStat extends Effect<NoCompileData> {
         ConfigArgumentsBuilder builder = new ConfigArgumentsBuilder();
         builder.require("stat", "You must specify the stat to add!");
         builder.require("amount", "You must specify the added amount!");
-        return builder.build$core();
+        return builder.build$common();
     }
 }

@@ -49,7 +49,7 @@ public class EffectOpenDisposal extends Effect<NoCompileData> {
     public ConfigArguments getArguments() {
         ConfigArgumentsBuilder builder = new ConfigArgumentsBuilder();
         builder.require("title", "You must specify the UI title!");
-        return builder.build$core();
+        return builder.build$common();
     }
 
 }
