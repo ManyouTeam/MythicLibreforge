@@ -48,7 +48,7 @@ public class EffectApplyReforge extends Effect<NoCompileData> {
                     disallowedTargets.add(disallowedReforge);
                 }
             }
-            reforge = ReforgeUtilsKt.getRandomReforge(ReforgeTargets.getForItem(data.getItem()), disallowedTargets);
+            reforge = ReforgeUtilsKt.getRandomReforge(ReforgeTargets.INSTANCE.getForItem(data.getItem()), disallowedTargets);
             if (reforge == null) {
                 return false;
             }

@@ -29,6 +29,11 @@ public class EffectAddMMOStat extends Effect<NoCompileData> {
     }
 
     @Override
+    public boolean getShouldReload() {
+        return false;
+    }
+
+    @Override
     protected void onEnable(@NotNull Dispatcher<?> dispatcher, @NotNull Config config, @NotNull Identifiers identifiers, @NotNull ProvidedHolder holder, NoCompileData compileData) {
         if (Bukkit.getPluginManager().isPluginEnabled("MythicLib") &&
                 dispatcher.getDispatcher() instanceof Player) {

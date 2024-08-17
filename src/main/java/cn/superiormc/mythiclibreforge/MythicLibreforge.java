@@ -27,7 +27,7 @@ public final class MythicLibreforge extends JavaPlugin {
         saveDefaultConfig();
         instance = this;
         config =  instance.getConfig();
-        if (config.getBoolean("effects.apply_reforge", true)) {
+        if (config.getBoolean("effects.apply_reforge", false)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered apply_reforge effect.");
             Effects.INSTANCE.register(new EffectApplyReforge());
         }
