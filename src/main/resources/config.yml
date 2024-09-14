@@ -17,6 +17,8 @@ triggers:
   smelt_result: true
   # Solved libreforge's melee_attack trigger priority problems.
   highest_attack: true
+  # Require MythicTotem
+  totem_actived: false
 filters:
   only_on_fire: true
   at_location: true

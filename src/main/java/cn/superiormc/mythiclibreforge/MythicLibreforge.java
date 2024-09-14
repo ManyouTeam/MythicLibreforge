@@ -7,6 +7,7 @@ import cn.superiormc.mythiclibreforge.filters.*;
 import cn.superiormc.mythiclibreforge.managers.CombatManager;
 import cn.superiormc.mythiclibreforge.triggers.TriggerHighestAttack;
 import cn.superiormc.mythiclibreforge.triggers.TriggerSmeltResult;
+import cn.superiormc.mythiclibreforge.triggers.TriggerTotemActived;
 import com.willfp.libreforge.conditions.Conditions;
 import com.willfp.libreforge.effects.Effects;
 import com.willfp.libreforge.effects.arguments.EffectArguments;
@@ -67,6 +68,10 @@ public final class MythicLibreforge extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered smelt_result trigger.");
             Triggers.INSTANCE.register(new TriggerSmeltResult());
         }
+        if (config.getBoolean("triggers.totem_actived", false)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered totem_actived trigger.");
+            Triggers.INSTANCE.register(new TriggerTotemActived());
+        }
         if (config.getBoolean("filters.only_on_fire", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered only_on_fire filter.");
             Filters.INSTANCE.register(new FilterOnlyOnFire());
@@ -90,7 +95,8 @@ public final class MythicLibreforge extends JavaPlugin {
             EffectArguments.INSTANCE.register(new ArgDamageItem());
         }
         if (config.getBoolean("conditions.in_combat", true)) {
-            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered in_combat condition.");Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §6Warn: This condition is experimental, be careful to use！");
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered in_combat condition.");
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §6Warn: This condition is experimental, be careful to use！");
             Bukkit.getPluginManager().registerEvents(new CombatManager(), this);
             Conditions.INSTANCE.register(new ConditionInCombat());
             CombatManager.checkCombat();
