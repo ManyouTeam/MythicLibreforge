@@ -60,6 +60,10 @@ public final class MythicLibreforge extends JavaPlugin {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered quick_equip effect.");
             Effects.INSTANCE.register(new EffectQuickEquip());
         }
+        if (config.getBoolean("effects.circle_flight", true)) {
+            Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered circle_flight effect.");
+            Effects.INSTANCE.register(new EffectQuickEquip());
+        }
         if (config.getBoolean("triggers.highest_attack", true)) {
             Bukkit.getConsoleSender().sendMessage("§x§9§8§F§B§9§8[MythicLibreforge] §fRegistered highest_attack trigger.");
             Triggers.INSTANCE.register(new TriggerHighestAttack());
